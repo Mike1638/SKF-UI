@@ -1,6 +1,6 @@
 <template>
  <div>
-  frank1 
+  frank2
    </div> 
 </template>
 <script>
