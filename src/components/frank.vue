@@ -1,8 +1,0 @@
-<template>
- <div>
-  frank1 
-   </div> 
-</template>
-<script>
-export default{}
-</script>
