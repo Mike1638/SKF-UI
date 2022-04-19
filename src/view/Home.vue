@@ -5,8 +5,8 @@
       <h1>SKF UI</h1>
       <h2>多组件，灵活，小巧</h2>
       <div class="actions">
-        <a>github</a>
-        <a>起步</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <router-link to="/doc">起步</router-link>
       </div>
     </div>
   </div>
@@ -18,23 +18,25 @@ export default {components:{Topnav}}
 </script>
 
 <style lang="scss" scoped>
-.topnav{
-  background-color: pink;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    >.logo{
-      max-width: 6em;
-      padding-right: auto;
-    }
-    >.menu{
-      display: flex;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-      >li{
-        margin:0 1em;
-      }
-    }   
+.banner{
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: lightgreen;
+  >.actions{
+    padding: 8px 0;
+    >a{
+      margin:0 8px;
+      background: #fff;
+      display:inline-block;
+      $h: 28px;
+      line-height: $h;
+      border-radius:$h/2;
+      padding: 0 8px;
+    }    
+
+  } 
 }
 </style>
