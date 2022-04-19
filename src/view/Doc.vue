@@ -5,12 +5,15 @@
       <aside v-if="menuVisible">
         <h2>组件列表</h2>
         <ol>
-          <li><router-link to="">Switch组件</router-link></li>
+          <li><router-link to="/doc/switch">Switch组件</router-link></li>
           <li><router-link to="">Button组件</router-link></li>
           <li><router-link to="">Dialog组件</router-link></li>
           <li><router-link to="">Tabs组件</router-link></li>
         </ol>
       </aside>
+      <main>
+        <router-view/>
+      </main>
     </div>
   </div>
 </template>
@@ -31,18 +34,21 @@ export default {
 aside {
   background: lightblue;
   width: 150px;
-  position: fixed;
-  top: 0;
-  left: 0;
   padding: 16px;
-  padding-top:70px;
-  >h2{
+  > h2 {
     margin-bottom: 4px;
   }
   > ol {
-    >li{
+    > li {
       padding: 4px 0;
     }
   }
+  @media (max-width: 500px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 70px;
 }
+}
+
 </style>
