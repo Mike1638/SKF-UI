@@ -72,7 +72,6 @@ aside {
     flex-shrink: 0;
   }
    > main {
-     border: 1px solid red;
     flex-grow: 1;
     padding: 16px;
     background: lightgreen;
