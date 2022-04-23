@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button :class="{ checked: value }" @click="toggle">
+    <button class="skf-switch" :class="{ 'skf-checked': value }" @click="toggle">
       <span></span>
     </button>
   </div>
@@ -19,10 +19,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 $bh: 22px;
 $rh: $bh - 4px;
-button {
+.skf-switch{
   width: $bh * 2;
   height: $bh;
   border: none;
@@ -42,7 +42,7 @@ button {
   &:focus {
     outline: none;
   }
-  &.checked {
+  &.skf-checked {
     background: rgb(24, 144, 255);
     span {
       left: calc(100% - #{$rh} - 2px);
@@ -53,7 +53,7 @@ button {
       width: $rh + 4px;
     }
   }
-  &.checked:active {
+  &.skf-checked:active {
     span {
       width: $rh + 4px;
       margin-left: -4px;
