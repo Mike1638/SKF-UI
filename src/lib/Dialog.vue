@@ -15,8 +15,8 @@
           <p>第四行字</p>
         </main>
         <footer>
-          <Button level="main">Ok</Button>
-          <Button>Cancel</Button>
+          <Button level="main" @click="ok">Ok</Button>
+          <Button @click="cancel">Cancel</Button>
         </footer>
       </div>
     </div>
@@ -35,6 +35,12 @@ export default {
     closeonClickOverlay:{
         type:Boolean,
         default:true
+    },
+    ok:{
+      type:Function
+    },
+    cancel:{
+      type:Function
     }
   },
   setup(props, context) {
@@ -46,7 +52,17 @@ export default {
             close()
         }
     }
-    return { close ,onClickOverlay};
+    const ok = ()=>{
+      if(props.ok && props.ok() !== false){
+        close()
+      }
+    }
+    const cancel = ()=>{
+      if(props.ok && props.ok() !== false){
+        close()
+      }
+    }
+    return { close ,onClickOverlay,ok,cancel};
   },
 };
 </script>
