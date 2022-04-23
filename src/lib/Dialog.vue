@@ -4,15 +4,11 @@
     <div class="skf-dialog-wrapper">
       <div class="skf-dialog">
         <header>
-          标题 <span class="skf-dialog-close" @click="close"></span>
+         <slot name="title"></slot>
+           <span class="skf-dialog-close" @click="close"></span>
         </header>
         <main>
-          <p>
-            第一行字第一行字第一行字第一行字第一行字第一行字第一行字第一行字
-          </p>
-          <p>第二行字</p>
-          <p>第三行字</p>
-          <p>第四行字</p>
+          <slot name="maincontent"></slot>
         </main>
         <footer>
           <Button level="main" @click="ok">Ok</Button>
@@ -28,6 +24,10 @@ import Button from "./Button.vue";
 export default {
   components: { Button },
   props: {
+    title:{
+      type:String,
+      default:'Basic Dialog'
+    },
     visible: {
       type: Boolean,
       default: false,
