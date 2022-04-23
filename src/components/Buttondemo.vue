@@ -40,15 +40,19 @@
     </div>
     <h1>示例4</h1>
     <Button disabled>不可用</Button>
-    <Button theme="link" disabled>不可用</Button>
-    <Button theme="text" disabled>不可用</Button>
+    <Button theme="link" disabled>不可用链接</Button>
+    <Button theme="text" disabled>不可用文本</Button>
+    <h1>示例5</h1>
+    <Button loading>加载中</Button>
+    <Button loading></Button>
+    <Button >加载完毕</Button>
   </div>
 </template>
 
 <script lang="ts">
 import Button from "../lib/Button.vue";
 export default {
-  components: { Button },
+  components: { Button},
 };
 </script>
 

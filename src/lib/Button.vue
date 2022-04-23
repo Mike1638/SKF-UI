@@ -1,5 +1,6 @@
 <template>
   <button class="skf-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="skf-loadingIndicator"></span>
     <slot />
   </button>
 </template>
@@ -22,6 +23,10 @@ export default {
       default: "normal",
     },
     disabled:{
+      type:Boolean,
+      default:false
+    },
+    loading:{
       type:Boolean,
       default:false
     }
@@ -153,6 +158,21 @@ export default {
       cursor: not-allowed;
       color:rgb(191, 191, 191)
     }
+  }
+  >.skf-loadingIndicator{
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin-right:  6px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(24, 144, 255) rgb(24, 144, 255) transparent transparent ;
+    animation: skf-spin 1s infinite linear;
+  }
+  @keyframes skf-spin{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
   }
 }
 </style>
