@@ -19,12 +19,21 @@
       <p>第四行字</p>
     </template>
   </Dialog>
+  <h1>示例2</h1>
+  <Button @click="showDialog">toggle</Button>
+  <Dialog>
+    <template v-slot:title>
+      <strong>Basic Dialog</strong>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">
 import Dialog from "../lib/Dialog.vue";
 import Button from "../lib/Button.vue";
+import { openDialog } from "../lib/openDialog";
 import { ref } from "vue";
+import { title } from "process";
 export default {
   components: { Dialog, Button },
   setup() {
@@ -38,7 +47,19 @@ export default {
     const f2 = () => {
       return true;
     };
-    return { x, toggle, f1, f2 };
+    const showDialog = () => {
+      openDialog({
+        title:'title',
+        maincontent: "content",
+        ok() {
+          return true;
+        },
+        cancel() {
+          return true;
+        },
+      });
+    };
+    return { x, toggle, f1, f2, showDialog };
   },
 };
 </script>

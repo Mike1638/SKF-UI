@@ -1,6 +1,7 @@
 <template>
   <template v-if="visible">
-    <div class="skf-dialog-overlay" @click="onClickOverlay"></div>
+    <Teleport to="body">
+      <div class="skf-dialog-overlay" @click="onClickOverlay"></div>
     <div class="skf-dialog-wrapper">
       <div class="skf-dialog">
         <header>
@@ -16,6 +17,7 @@
         </footer>
       </div>
     </div>
+    </Teleport>
   </template>
 </template>
 
@@ -24,10 +26,6 @@ import Button from "./Button.vue";
 export default {
   components: { Button },
   props: {
-    title:{
-      type:String,
-      default:'Basic Dialog'
-    },
     visible: {
       type: Boolean,
       default: false,
