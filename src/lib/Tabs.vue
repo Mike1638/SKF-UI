@@ -1,25 +1,27 @@
 <template>
   <div class="skf-tabs">
     <div class="skf-tabs-nav">
-      <div class="skf-tabs-nav-item" v-for="(t, index) in titles" :key="index">
+      <div class="skf-tabs-nav-item" v-for="(t, index) in titles" :key="index" :class="{selected:t === selected}" @click="select(t)">
         {{ t }}
       </div>
     </div>
     <div class="skf-tabs-content">
-      <component
-        class="skf-tabs-content-item"
-        v-for="(c, index) in defaults"
-        :is="c"
-        :key="index"
-      />
+      <component class="skf-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index" :class="{selected:c.props.title===selected}"></component>
     </div>
   </div>
 </template>
 <script lang="ts">
 import Tab from "./Tab.vue";
 export default {
-  setup(props, context) {
+  props:{
+     selected:{
+       type:String,
+     }    
+  } ,
+ setup(props, context) {
     const defaults = context.slots.default();
+    console.log(defaults[0].props.title);
+    
     defaults.forEach((item) => {
       if (item.type !== Tab) {
         throw new Error("组件类型错误！");
@@ -28,7 +30,10 @@ export default {
     const titles = defaults.map((item) => {
       return item.props.title;
     });
-    return { defaults, titles };
+    const select = (t:string)=>{
+      context.emit('update:selected',t)
+    }
+    return { defaults, titles ,select};
   },
 };
 </script>
@@ -54,6 +59,12 @@ export default {
   }
   &-content{
       padding: 8px 0;
+     &-item{
+       display: none;
+        &.selected{
+        display: block;
+      }
+     }
   }
 }
 </style>
