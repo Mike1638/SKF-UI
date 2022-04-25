@@ -18,18 +18,12 @@
       <div class="skf-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="skf-tabs-content">
-      <component
-        class="skf-tabs-content-item"
-        v-for="(c, index) in defaults"
-        :is="c"
-        :key="index"
-        :class="{ selected: c.props.title === selected }"
-      ></component>
+     <component :is="current" :key="current.props.title" />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { onMounted, onUpdated, ref, watchEffect } from "vue";
+import { computed, onMounted,  ref, watchEffect } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -59,12 +53,19 @@ export default {
     const titles = defaults.map((item) => {
       return item.props.title;
     });
+     const current = computed(() => {
+      return defaults.filter(tag => tag.props.title === props.selected)[0]
+    })
+    console.log(current);
+    
     const select = (t: string) => {
       context.emit("update:selected", t);
     };
-    return { defaults, titles, select, indicator, container ,selectedItem};
+    return { defaults, titles, select, indicator, container ,selectedItem,current};
   },
 };
+
+
 </script>
 
 <style lang="scss">
@@ -89,12 +90,6 @@ export default {
   }
   &-content {
     padding: 8px 0;
-    &-item {
-      display: none;
-      &.selected {
-        display: block;
-      }
-    }
   }
   &-nav-indicator {
     position: absolute;
@@ -103,7 +98,7 @@ export default {
     left: 0;
     bottom: -1px;
     background: rgb(24, 144, 255);
-    transition: all 650ms;
+    transition: all 350ms;
   }
 }
 </style>
