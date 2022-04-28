@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button class="skf-switch" :class="{ 'skf-checked': value }" @click="toggle">
+    <button
+      class="skf-switch"
+      :class="{ 'skf-checked': value}"
+      :disabled="disabled"
+      @click="toggle"
+    >
       <span></span>
     </button>
   </div>
@@ -8,7 +13,13 @@
 
 <script lang="ts">
 export default {
-  props: { value: Boolean },
+  props: {
+     value: Boolean, 
+     disabled:{
+      type:Boolean,
+      default:false
+     }
+     },
   setup(props, context) {
     const toggle = () => {
       context.emit("update:value", !props.value);
@@ -22,7 +33,7 @@ export default {
 <style lang="scss">
 $bh: 22px;
 $rh: $bh - 4px;
-.skf-switch{
+.skf-switch {
   width: $bh * 2;
   height: $bh;
   border: none;

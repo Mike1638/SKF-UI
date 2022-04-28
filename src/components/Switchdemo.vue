@@ -1,19 +1,19 @@
 <template>
-    <Switch v-model:value='y' />
+  <div>
+    <h1>Switch组件示例</h1>
+    <Demo :component="Switch1demo"></Demo> 
+    <Demo :component="Switch2demo"></Demo> 
+  </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import Switch from '../lib/Switch.vue'
+import Switch1demo from "./Switch1.demo.vue"
+import Switch2demo from "./Switch2.demo.vue"
+import Demo from "./Demo.vue"
 export default {
- components:{Switch},
- setup(){
-   const y = ref(false)
-   return {y}
- }
-}
+  components: {Switch1demo,Switch2demo,Demo},
+  setup(){
+    return { Switch1demo,Switch2demo};
+  }
+};
 </script>
-
-<style lang="scss">
-
-</style>>

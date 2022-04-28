@@ -8,7 +8,7 @@ import Tabsdemo from './components/Tabsdemo.vue'
 import Markdown from './components/Markdown.vue'
 import { h } from 'vue'
 const history = createWebHashHistory()
-const markdown =(filename)=>h(Markdown,{path:`../markdown/${filename}.md`,key:filename})
+const markdown =(filename: string)=>h(Markdown,{path:`../markdown/${filename}.md`,key:filename})
 export const router = createRouter({
     history:history,
     routes:[
@@ -21,7 +21,7 @@ export const router = createRouter({
            {path:'tabs',component:Tabsdemo},
            {path:'introduce',component:markdown('Introduce')},
            {path:'install',component:markdown('Install')},
-           {path:'start',component:markdown('Start'),},
+           {path:'start',component:markdown('Start')},
        ]},
     ]
 })
