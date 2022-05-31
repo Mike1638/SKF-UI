@@ -11,7 +11,7 @@
       <div class="skf-demo-code" v-if="codeVisible">
          <pre class="language-html" v-html="html"/>
       </div>
-    </div>
+  </div>
 </template>
 <script lang="ts">
 import Button from "../lib/Button.vue";
