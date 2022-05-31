@@ -1,5 +1,7 @@
+<demo>
+示例1
+</demo>
 <template>
-  <span>Dialog示例</span>
   <h1>示例1</h1>
   <Button @click="toggle">toggle</Button>
   <Dialog  :visible="x"  @update:visible="x = $event" :closeonClickOverlay="false"  :ok="f1" :cancel="f2" >
@@ -13,28 +15,17 @@
       <p>第四行字</p>
     </template>
   </Dialog>
-
-  <h1>示例2</h1>
-  <Button @click="showDialog">toggle</Button>
-  <Dialog>
-    <template v-slot:title>
-      <strong>Basic Dialog</strong>
-    </template>
-  </Dialog>
-
-    <Demo :component="Dialog1demo"></Demo> 
 </template>
 
 <script lang="ts">
-import Dialog from "../lib/Dialog.vue";
-import Button from "../lib/Button.vue";
-import { openDialog } from "../lib/openDialog";
+import Diglog from "../../lib/Dialog.vue"
+import Button from "../../lib/Button.vue";
+import { openDialog } from "../../lib/openDialog";
 import { ref } from "vue";
-import Dialog1demo from "./Dialogdemo/Dialog1.demo.vue"
 export default {
-  components: { Dialog, Button ,Dialog1demo},
-  setup() {
-    const x = ref(false);
+  components:{Diglog,Button},
+  setup(){
+      const x = ref(false);
     const toggle = () => {
       x.value = !x.value;
     };
@@ -56,10 +47,11 @@ export default {
         },
       });
     };
-    return { x, toggle, f1, f2, showDialog ,Dialog1demo };
-  },
-};
+    return { x, toggle, f1, f2, showDialog };
+  }
+}
 </script>
 
 <style>
+
 </style>
