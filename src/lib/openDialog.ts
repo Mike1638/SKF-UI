@@ -6,7 +6,7 @@ export const openDialog = (options) => {
   document.body.appendChild(div);
   const app = createApp({
     render() {
-      return h(
+      return  h(
         Dialog,
         {
           visible: true,
@@ -18,7 +18,7 @@ export const openDialog = (options) => {
           },
           ok,cancel
         },
-        { title: title, maincontent: maincontent }
+        {title: () => title, maincontent: () => maincontent}
       );
     },
   });
