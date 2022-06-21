@@ -1,5 +1,5 @@
 <demo>
-示例1
+禁用状态
 </demo>
 <template>
   <Tabs v-model:selected="x">

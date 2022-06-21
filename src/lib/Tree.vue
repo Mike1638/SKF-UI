@@ -1,11 +1,12 @@
 <template>
   <div class="skf-tree">
-       <TreeItem v-for="child in innerOptions" :key="child.key" :item="child" :checkbox="checkbox"></TreeItem>
+       <TreeItem v-for="child in innerOptions" :key="child.key"  :item="child" :checkbox="checkbox"></TreeItem>
   </div>
 </template>
 
 <script lang="ts">
 import TreeItem from "./Treeitem.vue"
+import { provide,ref } from 'vue';
 export default {
   name:'Tree',
   components:{TreeItem},
@@ -20,18 +21,19 @@ export default {
     } ,
   },
   setup(props,context){
-    let innerOptions =[];
+    let innerOptions =ref([]);
     let  handleOPtions = (item,indent = 0 )=>{
             return {
                 ...item,
                 indent:indent,
-                expand:true,
+                expand:false,
                 checked:false,
                 disables:false,
                 children:(item.children || []).map(item => handleOPtions(item,indent + 1))
             }
         }
-    innerOptions =  props.options.map(item => handleOPtions(item))
+    innerOptions.value =  props.options.map(item => handleOPtions(item))
+    provide("innerOptions",innerOptions)
     return {TreeItem,innerOptions}
   },
     

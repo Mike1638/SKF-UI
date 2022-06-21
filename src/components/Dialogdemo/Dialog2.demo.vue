@@ -1,5 +1,5 @@
 <demo>
-示例2
+函数式调用
 </demo>
 <template>
   <Button @click="showDialog">toggle</Button>

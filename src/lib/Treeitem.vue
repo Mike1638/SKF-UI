@@ -1,17 +1,19 @@
 <template>
     <div class="skf-tree-item">
         <div @click.stop="handleClick" :style="{ paddingLeft : indentLeft + 'px' }"   :class="[{checked:item.checked},'skf-item-content']"  >
-        <span>{{item.val}}||{{item.expand}}||{{item.children.length}}||{{item.expand && item.children.length}}</span>
+         <div class="skf-tree-item-right-triangle" v-show="!item.expand  && item.children.length"></div>  
+         <div class="skf-tree-item-down-triangle" v-show="item.expand && item.children.length"></div>
+         <span>{{item.val}}</span>
         </div>
         <div  v-if="item.expand && item.children.length" class="skf-item-children">
-        {{item.expand}}
           <TreeItem v-for="child in item.children" :key="child.key" :item="child" :checkbox="checkbox"></TreeItem>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { computed, watch } from '@vue/runtime-core'
+import {inject,Ref} from "vue"
+import { computed} from '@vue/runtime-core'
 export default {
   name:'TreeItem',
   props:{
@@ -33,8 +35,9 @@ export default {
     }
   },
   setup(props,context){
-    const handleClick=()=>{
-           console.log(props.item);
+    let isshow = false
+    const innerOptions = inject<Ref<any>>("innerOptions");
+      const handleClick=()=>{
            if(props.item.disabled){
             return
            }
@@ -42,21 +45,12 @@ export default {
               props.item.checked  = !props.item.checked
            }
            props.item.expand = !props.item.expand
-           console.log('xxx')
-            console.log(props.item);
-           console.log(props.item.expand && props.item.children.length)
+           isshow = !isshow
     }
     const  indentLeft = computed(()=>{
         return props.item.indent * 30
     })
-    // const zhankai = computed(()=>{
-    //     console.log('xxxx')
-    //     return props.item.expand && props.item.children.length
-    // })
-    // watch(()=>props.item.expand,()=>{
-    //     return props.item.expand && props.item.children.length
-    // },{ deep: true , immediate: true })
-    return {handleClick,indentLeft}
+    return {handleClick,indentLeft,innerOptions,isshow}
   },
 }
 </script>
@@ -66,7 +60,28 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-   
-   
+   .skf-item-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-around;
+      &:hover{
+         background: #f5f7fa;
+     } 
+     .skf-tree-item-right-triangle{
+     margin:0 0 0px 10px; 
+     width: 0;
+     height: 0;
+     border:4px solid; 
+     border-color:  transparent  transparent  transparent #c0c4cc;
+     }
+     .skf-tree-item-down-triangle{
+     margin:4px 5px 0px 10px; 
+     width: 0;
+     height: 0;
+     border:4px solid; 
+     border-color:#c0c4cc  transparent  transparent  transparent;
+     }
+   } 
 }
 </style>
