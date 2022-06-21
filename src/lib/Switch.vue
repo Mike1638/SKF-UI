@@ -22,9 +22,13 @@ export default {
      },
   setup(props, context) {
     const toggle = () => {
+      click()
       context.emit("update:value", !props.value);
     };
-    return { toggle };
+    const click = ()=>{
+      console.log(!props.value)
+    }
+    return { toggle,click };
   },
 };
 </script>

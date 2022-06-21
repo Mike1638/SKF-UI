@@ -1,10 +1,10 @@
 # 安装 
 打开终端运行下列命令：
 
- `npm install king-ui`
+ `npm install SKF-ui`
 
 <p>或</p>
 
- ` yarn add king-ui `
+ ` yarn add SKF-ui `
 
 下一节：[开始使用](#/doc/start)

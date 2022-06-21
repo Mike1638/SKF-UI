@@ -1,6 +1,8 @@
 {
   "name": "skf",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "files": ["dist/lib/*"],
+  "main": "dist/lib/skf.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

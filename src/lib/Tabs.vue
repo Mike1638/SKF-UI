@@ -1,15 +1,7 @@
 <template>
   <div class="skf-tabs">
     <div class="skf-tabs-nav" ref="container">
-      <div
-        class="skf-tabs-nav-item"
-        v-for="(t, index) in titles"
-        :key="index"
-        :ref="
-          (el) => {
-            if (t === selected) selectedItem = el;
-          }
-        "
+      <div  class="skf-tabs-nav-item"  v-for="(t, index) in titles" :key="index"  :ref=" (el) => {if (t === selected) selectedItem = el;} "
         :class="{ selected: t === selected ,disabled:disabled.includes(t)}"
         @click="select(t)"
       >
@@ -37,7 +29,7 @@ export default {
     const container = ref<HTMLDivElement>(null);
     
     
-    onMounted(() => {
+    (() => {
       watchEffect(() => {
         const { width } = selectedItem.value.getBoundingClientRect();
         indicator.value.style.width = width + "px";
@@ -47,7 +39,7 @@ export default {
       });
     });
     const defaults = context.slots.default();
-    console.log(defaults[1].props);
+    console.log(defaults[1].props); 
     
     defaults.forEach((item) => {
       if (item.type !== Tab) {
@@ -60,7 +52,6 @@ export default {
      const current = computed(() => {
       return defaults.filter(tag => tag.props.title === props.selected)[0]
     })
-
     let disabled=[]
      for(let i = 0;i<defaults.length;i++){
        if('disabled' in  defaults[i].props){

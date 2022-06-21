@@ -15,6 +15,7 @@
           <li><router-link to="/doc/button">Button组件</router-link></li>
           <li><router-link to="/doc/dialog">Dialog组件</router-link></li>
           <li><router-link to="/doc/tabs">Tabs组件</router-link></li>
+          <li><router-link to="/doc/tree">Tree组件</router-link></li>
         </ol>
       </aside>
       <main>
@@ -39,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 aside {
   background: lightblue;
-  width: 150px;
+  width: 200px;
   padding: 16px 0;
   position: fixed;
   top: 0;
@@ -48,13 +49,13 @@ aside {
   height: 100%;
   > h2 {
     margin-bottom: 4px;
-    padding: 0 16px;
+    padding: 0 10px;
   }
   > ol {
     > li {
       > a {
         display: block;
-        padding: 4px 16px;
+        padding: 12px 20px;
         text-decoration: none;
       }
       .router-link-active {
@@ -73,7 +74,7 @@ aside {
   > .content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: 156px;
+    padding-left: 250px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
@@ -83,6 +84,7 @@ aside {
   display: flex;
   > aside {
     flex-shrink: 0;
+    z-index: 9;
   }
   > main {
     flex-grow: 1;

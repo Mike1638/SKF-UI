@@ -1,7 +1,7 @@
 <template>
   <template v-if="visible">
     <Teleport to="body">
-      <div class="skf-dialog-overlay" @click="onClickOverlay"></div>
+    <div class="skf-dialog-overlay" @click="onClickOverlay"></div>
     <div class="skf-dialog-wrapper">
       <div class="skf-dialog">
         <header>
