@@ -16,12 +16,11 @@ export default {
         },
         min:{
             type:Number,
-            require:true
-
+            default:-Infinity  
         },
         max:{
             type:Number,
-            require:true
+            default:Infinity
         },
         disabled:{
             type:Boolean,
@@ -34,14 +33,14 @@ export default {
      },
      setup(props,context){
         const minrestrict = computed(()=>{
-              if(props.num==props.min){
+              if(props.num==props.min || props.num - props.step < props.min){
                 return true
               }else{
                 return false
               }
         })
         const maxrestrict = computed(()=>{
-              if(props.num==props.max){
+              if(props.num==props.max || props.num + props.step >props.max){
                 return true
               }else{
                 return false
@@ -74,6 +73,7 @@ export default {
 
 <style lang="scss">
   .skf-inputnumber-wrapper{
+    
     border-radius: 4px;
     display: inline-flex;
     flex-direction: row;
@@ -82,6 +82,7 @@ export default {
        height: 40px;  
        border: 1px solid #d8dde7;
        outline: none;
+       
        &.left{
         border-bottom-left-radius: 5px;
         border-top-left-radius: 5px;
@@ -89,6 +90,12 @@ export default {
        &.right{
         border-bottom-right-radius: 5px;
         border-top-right-radius: 5px;
+       }
+        &:hover{
+          cursor: pointer;
+       }
+       &:disabled{
+         cursor:not-allowed
        }  
     }
     .skf-inputnumber-input{
@@ -100,6 +107,15 @@ export default {
     border-top: 1px solid #d8dde7;
     border-bottom: 1px solid #d8dde7;
     text-align: center;
+     &:hover{
+        cursor: pointer; 
+       }
+     &:disabled{
+         cursor:not-allowed
+       } 
+     }
+      &:hover{
+        box-shadow: rgb(64 158 255) 0px 1px 0px,rgb(64 158 255) 0px -1px 0px,rgb(64 158 255) 2px 0px 0px,rgb(64 158 255) -2px 0px 0px;
+       }
   }
-}
 </style>
