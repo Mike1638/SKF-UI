@@ -42,6 +42,7 @@ export default {
   max-width: 700px;
   border: 1px solid #d9d9d9;
   margin:16px 0 32px;
+  border-radius: 4px;
     >h2{
     font-size: 20px;
     padding: 8px 16px;

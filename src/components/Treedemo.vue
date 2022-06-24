@@ -1,57 +1,16 @@
 <template>
-<div>
-      <Tree :options="options" :checkbox="true"></Tree>
-</div>  
+    <span>Tree 示例</span>
+    <Demo :component="Tree1DemoVue"></Demo> 
 </template>
 
 <script lang="ts">
-import Tree from "../lib/Tree.vue"
-
+import Demo from "../components/Demo.vue"
+import Tree1DemoVue from "./Treedemo/Tree1.demo.vue"
 export default {
- components: { Tree},
- setup(){
-    const options=[ 
-        {
-            key:'11',
-            val:11,
-            children:[
-                {
-                    key:'12',
-                    val:12,
-                    children:[
-                        {
-                            key:'13',
-                            val:13,
-                            children:[
-                                {
-                                    key:'14',
-                                    val:14,
-                                    children:[
-                                        {
-                                            key:'15',
-                                            val:15,
-                                        }
-                                    ]                                        
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            key:'21',
-            val:21,
-            children:[
-                {
-                    key:'22',
-                    val:'22'
-                }
-            ]
-        }
-            ]
-    return {Tree,options}
- },
+    components:{Demo,Tree1DemoVue},
+    setup(){
+    return{Demo,Tree1DemoVue}
+    }
 }
 </script>
 

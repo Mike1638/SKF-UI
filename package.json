@@ -1,7 +1,9 @@
 {
   "name": "skf",
   "version": "0.0.1",
-  "files": ["dist/lib/*"],
+  "files": [
+    "dist/lib/*"
+  ],
   "main": "dist/lib/skf.js",
   "scripts": {
     "dev": "vite",
@@ -10,6 +12,7 @@
   "dependencies": {
     "github-markdown-css": "^5.1.0",
     "prismjs": "^1.28.0",
+    "tiny-emitter": "^2.1.0",
     "vue": "^3.0.0-rc.1",
     "vue-router": "4.0.0-beta.3"
   },

@@ -67,6 +67,7 @@ export default {
     align-content: space-around;
       &:hover{
          background: #f5f7fa;
+         cursor: pointer;
      } 
      .skf-tree-item-right-triangle{
      margin:0 0 0px 10px; 
