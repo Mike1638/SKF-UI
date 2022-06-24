@@ -7,6 +7,7 @@ import Dialogdemo from './components/Dialogdemo.vue'
 import Tabsdemo from './components/Tabsdemo.vue'
 import Treedemo from './components/Treedemo.vue'
 import InputNumberdemo from './components/InputNumberdemo.vue'
+import Breadcrumbdemo from './components/Breadcrumbdemo.vue'
 import Markdown from './components/Markdown.vue'
 import { h } from 'vue'
 import install from "./markdown/Install.md"
@@ -26,6 +27,7 @@ export const router = createRouter({
            {path:'tabs',component:Tabsdemo},
            {path:'tree',component:Treedemo},
            {path:'inputnumber',component:InputNumberdemo},
+           {path:'breadcrumb',component:Breadcrumbdemo},
            {path:'introduce',component:markdown(introduce)},
            {path:'install',component:markdown(install)},
            {path:'start',component:markdown(start)},

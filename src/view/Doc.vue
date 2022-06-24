@@ -10,13 +10,14 @@
           <li><router-link to="/doc/start">开始使用</router-link></li>
         </ol>
         <h2>组件列表</h2>
-        <ol>
+        <ol class="overli">
           <li><router-link to="/doc/switch">Switch组件</router-link></li>
           <li><router-link to="/doc/button">Button组件</router-link></li>
           <li><router-link to="/doc/dialog">Dialog组件</router-link></li>
           <li><router-link to="/doc/tabs">Tabs组件</router-link></li>
           <li><router-link to="/doc/tree">Tree组件</router-link></li>
           <li><router-link to="/doc/inputnumber">InputNumber组件</router-link></li>
+          <li><router-link to="/doc/breadcrumb">Breadcrumb组件</router-link></li>
         </ol>
       </aside>
       <main>
@@ -61,6 +62,13 @@ aside {
       }
       .router-link-active {
         background: burlywood;
+      }
+    }
+    &.overli{
+      overflow-y:scroll;
+      height: calc(100vh - 295px);
+      &::-webkit-scrollbar{
+        width: 0 !important
       }
     }
   }
