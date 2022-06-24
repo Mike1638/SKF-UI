@@ -1,9 +1,9 @@
 <demo>
-基础用法
+默认展开
 </demo>
 <template>
   <div>
-      <Tree :options="options"></Tree>
+      <Tree :options="options" :expand="true"></Tree>
  </div> 
 </template>
 
