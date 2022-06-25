@@ -18,6 +18,7 @@ export default {
     >img{
     width: 500px;
     height: 250px;
+    object-fit: fill;
     }
 }
 </style>

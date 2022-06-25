@@ -1,11 +1,11 @@
 <template>
   <div class="skf-swiper-wrapper" >
-    <div class="left" @click="left"></div>
-    <div class="right" @click="right"></div>
+    <div class="left" @click="throttleleft"></div>
+    <div class="right" @click="throttleright"></div>
     <div class="skf-swiper-item-wrapper" :style="[`transform:${containerStyle}`,`transition:${flashStyle}`]">
-    <div v-for="(item,index) in [list[lastimgindex-1]]" :key="index" class="xxxxx"><img :src="item.img" /></div>
+    <div v-for="(item,index) in [list[lastimgindex-1]]" :key="index" class="skf-swiper-item-wrapper-img"><img :src="item.img" /></div>
       <slot></slot>
-    <div v-for="(item,index) in [list[0]]" :key="index" class="xxxxx"><img :src="item.img" /></div>
+    <div v-for="(item,index) in [list[0]]" :key="index" class="skf-swiper-item-wrapper-img"><img :src="item.img" /></div>
     </div>
     <div class="dotwrapper">
       <span v-for="(item,index) in list" :key="index" class="dot" @click="dotgo($event,index)" :class="[{currentdot:(index == currentindex)}]"></span>
@@ -22,32 +22,48 @@ export default {
   const currentindex = ref(0)
   const flashmove = ref('1s')
   const lastimgindex =list.value.length
+  const throttle = (fn,time)=>{
+   let freeze = null 
+  return (...args)=>{
+      if(freeze) {return}
+      fn.call(null,...args)
+        freeze = true
+      setTimeout(()=>{
+        freeze = null
+      },time)
+  }
+  }
   const left = ()=>{
    distance.value = distance.value+500
    currentindex.value  =currentindex.value -1
    if(distance.value == 0){
-   
-    currentindex.value = lastimgindex-1
-   distance.value = -(lastimgindex)*500
+    flashmove.value = 'none';
+    currentindex.value = lastimgindex
+    distance.value = -(lastimgindex+1)*500
+    setTimeout(()=>{
+     flashmove.value = '1s';
+     currentindex.value = currentindex.value-1
+     distance.value = -(lastimgindex)*500
+    },0)
    }
-   console.log('currentindex',currentindex.value)
-    console.log('left')
   }
   const right  = ()=>{
    distance.value = distance.value-500
    currentindex.value  = currentindex.value +1
    if(distance.value == -(lastimgindex+1)*500){
-     setTimeout(()=>{
-       flashmove.value = 'none'
-    })
-    currentindex.value = 0
-    distance.value = -500
+    flashmove.value = 'none';
+    currentindex.value = -1
+    distance.value = 0
+    setTimeout(()=>{
+      flashmove.value = '1s'
+      currentindex.value = 0
+      distance.value = -500
+    },0)
    }
-   console.log('currentindex',currentindex.value)
-   console.log('right' )
   }
+  const throttleleft = throttle(left,1000) 
+  const throttleright = throttle(right,1000) 
   const dotgo =(e,index)=>{
-    console.log('index',index)  //  0 1 2 3
     currentindex.value = index
     distance.value = 500 * (-1 - index )
   }
@@ -56,9 +72,13 @@ export default {
       return  `translate(${distance.value}px, 0)`
   })
   const flashStyle = computed(()=>{
+    if(flashmove.value == "none" ){
+      return 'none'
+    }else{
       return  `transform ${flashmove.value}`
+    }
   })
-  return {left,right,dotgo,containerStyle,list,lastimgindex,currentindex,flashStyle}
+  return {throttleleft,throttleright,dotgo,containerStyle,list,lastimgindex,currentindex,flashStyle}
  }
 }
 </script>
@@ -69,6 +89,7 @@ export default {
     height: 250px;
     overflow: hidden; 
     position: relative;
+    border-radius: 5px;
     .left{
       width: 30px;
       height: 30px;
@@ -77,7 +98,32 @@ export default {
       bottom: 50%;
       transform: translate(0,50%);
       z-index: 10;
-      outline: 1px solid red;
+      border-radius: 15px;
+      margin-left: 10px;
+      outline: 1px solid rgb(173, 216, 230);
+      background: rgb(173, 216, 230);
+      &::before{
+        position: absolute;
+        left: 40%;
+        top: 36%;
+        transform: translate(-50%,-50%);
+        transform: rotate(45deg);
+        content: '';
+        height: 10px;
+        width: 10px;
+        background: black;
+      }
+      &::after{
+        position: absolute;
+        left: 48%;
+        top: 36%;
+        transform: translate(-50%,-50%);
+        transform: rotate(45deg);
+        content: '';
+        height: 10px;
+        width: 10px;
+        background: rgb(173, 216, 230);
+      }
     }
     .right{
       width: 30px;
@@ -87,7 +133,32 @@ export default {
       bottom: 50%;
       transform: translate(0,50%);
       z-index: 10;
-      outline: 1px solid yellow;
+      border-radius: 15px;
+      margin-right: 10px;
+      outline: 1px solid rgb(173, 216, 230);
+      background: rgb(173, 216, 230);
+         &::before{
+        position: absolute;
+        left: 30%;
+        top: 36%;
+        transform: translate(-50%,-50%);
+        transform: rotate(45deg);
+        content: '';
+        height: 10px;
+        width: 10px;
+        background: black;
+      }
+      &::after{
+        position: absolute;
+        left: 22%;
+        top: 36%;
+        transform: translate(-50%,-50%);
+        transform: rotate(45deg);
+        content: '';
+        height: 10px;
+        width: 10px;
+        background: rgb(173, 216, 230);
+      }
     }
       .dotwrapper{
       width: 100%;
@@ -104,12 +175,12 @@ export default {
         margin: 0 5px;
         width: 20px;
         height: 20px;
-        border: 1px solid red;
+        outline: 1px solid rgb(173, 216, 230);
         border-radius: 10px;
-        color: red;
         cursor: pointer;
+        text-align: center;
         &.currentdot{
-          background: orangered;
+          background: rgb(173, 216, 230);;
         }
       }
     }
@@ -117,8 +188,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 500px;
-    height: 250px;
+   
   }  
  }
 </style>
