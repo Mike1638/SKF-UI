@@ -18,6 +18,7 @@
           <li><router-link to="/doc/tree">Tree组件</router-link></li>
           <li><router-link to="/doc/inputnumber">InputNumber组件</router-link></li>
           <li><router-link to="/doc/breadcrumb">Breadcrumb组件</router-link></li>
+          <li><router-link to="/doc/swiper">Swiper组件</router-link></li>
         </ol>
       </aside>
       <main>
